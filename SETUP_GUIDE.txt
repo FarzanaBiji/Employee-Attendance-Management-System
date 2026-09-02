@@ -1,0 +1,208 @@
+===============================================
+EMPLOYEE ATTENDANCE MANAGEMENT SYSTEM
+Quick Setup Guide
+===============================================
+
+📋 REQUIREMENTS:
+- XAMPP/WAMP/LAMP (Apache + PHP + MySQL)
+- PHP 7.4 or higher
+- MySQL 5.7 or higher
+- Modern web browser
+
+===============================================
+🚀 QUICK SETUP (5 Minutes):
+===============================================
+
+1. INSTALL XAMPP
+   - Download from: https://www.apachefriends.org/
+   - Install and start Apache & MySQL services
+
+2. COPY PROJECT
+   - Copy 'Attendance_mgmt' folder to:
+     Windows: C:\xampp\htdocs\
+     Mac: /Applications/XAMPP/htdocs/
+     Linux: /opt/lampp/htdocs/
+
+3. CREATE DATABASE
+   a) Open browser: http://localhost/phpmyadmin
+   b) Click "New" to create database
+   c) Name: attendance_system
+   d) Click on the database
+   e) Go to "Import" tab
+   f) Choose file: database.sql
+   g) Click "Go" to import
+
+4. CONFIGURE (Optional)
+   - Open config.php
+   - Update database settings if needed:
+     DB_HOST: localhost
+     DB_USER: root
+     DB_PASS: (leave empty for XAMPP default)
+     DB_NAME: attendance_system
+
+5. ACCESS APPLICATION
+   - Open browser
+   - Go to: http://localhost/Attendance_mgmt/
+   - You'll see the landing page
+
+===============================================
+🔐 DEFAULT LOGIN CREDENTIALS:
+===============================================
+
+ADMIN ACCESS:
+Email: admin@company.com
+Password: admin123
+
+EMPLOYEE ACCESS:
+Email: john.doe@company.com
+Password: employee123
+
+(More sample employees in database.sql)
+
+===============================================
+📁 PROJECT STRUCTURE:
+===============================================
+
+Attendance_mgmt/
+├── assets/css/          → Stylesheets
+├── includes/            → Reusable components
+├── uploads/             → Profile pictures
+├── config.php           → Database configuration
+├── database.sql         → Database structure
+├── index.html           → Landing page
+├── admin_*.php          → Admin pages
+├── employee_*.php       → Employee pages
+└── README.md            → Full documentation
+
+===============================================
+✨ KEY FEATURES:
+===============================================
+
+ADMIN:
+✓ Dashboard with statistics
+✓ Employee management (add/edit/delete)
+✓ Daily attendance monitoring
+✓ Attendance reports (date range, monthly)
+✓ Leave approval/rejection
+✓ Department management
+✓ Profile settings
+
+EMPLOYEE:
+✓ Dashboard with personal stats
+✓ Check-in/Check-out attendance
+✓ Attendance history
+✓ Leave application
+✓ Profile management
+
+===============================================
+🛠️ TROUBLESHOOTING:
+===============================================
+
+Problem: "Connection failed"
+Solution: 
+- Make sure MySQL is running in XAMPP
+- Check database credentials in config.php
+- Verify database name is 'attendance_system'
+
+Problem: "Page not found"
+Solution:
+- Check if Apache is running
+- Verify project is in htdocs folder
+- Clear browser cache
+
+Problem: "Permission denied for uploads"
+Solution:
+- Right-click 'uploads' folder
+- Properties → Security → Edit
+- Give write permissions
+
+Problem: "Login not working"
+Solution:
+- Make sure database.sql is imported
+- Check default credentials
+- Clear browser cookies
+
+===============================================
+🎯 TESTING THE SYSTEM:
+===============================================
+
+1. Login as Admin
+   - Go to Employee Management
+   - Add a new employee
+   - View Dashboard statistics
+
+2. Login as Employee
+   - Mark attendance (Check-in)
+   - View attendance history
+   - Apply for leave
+
+3. Back to Admin
+   - View daily attendance
+   - Approve/reject leave
+   - Generate reports
+
+===============================================
+🔧 CUSTOMIZATION:
+===============================================
+
+Change Timezone:
+Edit config.php line 8:
+date_default_timezone_set('Asia/Kolkata');
+
+Change Shift Timing:
+- Login as Admin
+- Go to Employee Management
+- Edit employee → Update shift times
+
+Change Grace Period:
+Edit config.php calculate_late_status():
+$grace_period = 15 * 60; // 15 minutes
+
+Change Colors:
+Edit assets/css/style.css:
+:root section (lines 8-15)
+
+===============================================
+📞 SUPPORT:
+===============================================
+
+For detailed documentation, see README.md
+
+Common URLs:
+- Landing: http://localhost/Attendance_mgmt/
+- Admin: http://localhost/Attendance_mgmt/admin_login.php
+- Employee: http://localhost/Attendance_mgmt/employee_login.php
+- phpMyAdmin: http://localhost/phpmyadmin
+
+===============================================
+🎓 LEARNING RESOURCES:
+===============================================
+
+PHP: https://www.php.net/manual/
+MySQL: https://dev.mysql.com/doc/
+XAMPP: https://www.apachefriends.org/faq.html
+
+===============================================
+✅ CHECKLIST:
+===============================================
+
+□ XAMPP installed and running
+□ Project copied to htdocs
+□ Database created (attendance_system)
+□ database.sql imported successfully
+□ Can access http://localhost/Attendance_mgmt/
+□ Admin login works
+□ Employee login works
+□ Can mark attendance
+□ Can generate reports
+
+===============================================
+
+🎉 SETUP COMPLETE!
+Your Employee Attendance Management System 
+is ready to use!
+
+Start by logging in as Admin to add employees
+and configure departments.
+
+===============================================

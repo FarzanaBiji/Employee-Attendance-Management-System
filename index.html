@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Attendance Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .landing-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a3a8f 0%, #2c5aa0 100%);
+            padding: 40px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .landing-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==');
+            opacity: 0.3;
+        }
+        
+        .landing-content {
+            text-align: center;
+            color: white;
+            max-width: 1000px;
+            width: 100%;
+            z-index: 1;
+        }
+        
+        .logo {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .logo i {
+            font-size: 42px;
+            color: #4CAF50;
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 600;
+            text-align: left;
+        }
+        
+        .logo-text span {
+            display: block;
+            font-size: 14px;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+        
+        .landing-content h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            animation: slideDown 0.8s ease-out;
+        }
+        
+        .landing-content p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .login-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+            animation: slideUp 1s ease-out;
+        }
+        
+        .landing-btn {
+            padding: 18px 40px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .landing-btn.admin {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .landing-btn.employee {
+            background: white;
+            color: #1a3a8f;
+        }
+        
+        .landing-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .landing-btn.admin:hover {
+            background: #3d8b40;
+        }
+        
+        .landing-btn.employee:hover {
+            background: #f0f0f0;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+            animation: fadeIn 1.2s ease-out;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-card i {
+            font-size: 36px;
+            margin-bottom: 15px;
+            color: #4CAF50;
+        }
+        
+        .feature-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .feature-card p {
+            font-size: 14px;
+            margin-bottom: 0;
+            opacity: 0.8;
+        }
+        
+        .credentials {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeIn 1.4s ease-out;
+        }
+        
+        .credentials h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .credential-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .credential-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .credential-role {
+            font-weight: 600;
+        }
+        
+        .credential-details {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .landing-content h1 {
+                font-size: 32px;
+            }
+            
+            .landing-content p {
+                font-size: 16px;
+            }
+            
+            .login-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .landing-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .credential-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .credential-details {
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="landing-page">
+        <div class="landing-content">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <div class="logo-text">
+                    AttendancePro
+                    <span>Enterprise Solution</span>
+                </div>
+            </div>
+            
+            <h1>Employee Attendance Management System</h1>
+            <p>A comprehensive enterprise solution for managing employee attendance, leaves, and performance tracking with advanced analytics and reporting capabilities.</p>
+            
+            <div class="login-buttons">
+                <a href="admin_login.php" class="landing-btn admin">
+                    <i class="fas fa-user-shield"></i> Admin Portal
+                </a>
+                <a href="employee_login.php" class="landing-btn employee">
+                    <i class="fas fa-user-tie"></i> Employee Portal
+                </a>
+            </div>
+            
+            <div style="margin-bottom: 50px;">
+                <p style="font-size: 16px; margin-bottom: 15px;">New Employee?</p>
+                <a href="employee_register.php" style="color: white; text-decoration: underline; font-weight: 600;">
+                    <i class="fas fa-user-plus"></i> Register Your Account
+                </a>
+            </div>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Employee Management</h3>
+                    <p>Centralized employee profiles and department management</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>Attendance Tracking</h3>
+                    <p>Real-time attendance marking with geolocation validation</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Reports & Analytics</h3>
+                    <p>Comprehensive reports with visual analytics dashboard</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-calendar-times"></i>
+                    <h3>Leave Management</h3>
+                    <p>Streamlined leave request and approval workflow</p>
+                </div>
+            </div>
+            
+            <div class="credentials">
+                <h3>Get Started Today</h3>
+                <div class="credential-item">
+                    <div class="credential-role">Administrators:</div>
+                    <div class="credential-details">Access full system management</div>
+                </div>
+                <div class="credential-item">
+                    <div class="credential-role">Employees:</div>
+                    <div class="credential-details">Register and manage your attendance</div>
+                </div>
+                <div style="margin-top: 15px; font-size: 14px; opacity: 0.9;">
+                    <p><i class="fas fa-info-circle"></i> New employees can self-register instantly</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
