@@ -1,0 +1,12 @@
+# Prevent directory browsing
+Options -Indexes
+
+# Allow image files
+<FilesMatch "\.(jpg|jpeg|png|gif)$">
+    Allow from all
+</FilesMatch>
+
+# Deny access to PHP files in uploads
+<FilesMatch "\.php$">
+    Deny from all
+</FilesMatch>
